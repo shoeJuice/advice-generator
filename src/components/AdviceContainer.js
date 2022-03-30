@@ -16,19 +16,31 @@ const AdviceContainer = (props) => {
             "id": NaN,
             "advice": "Loading.."
     });
-    const isReloading = useState(false);
+    const [isReloading, setIsReloading] = useState(false);
+    const [loadingAdvice, setLoadingAdvice] = useState(false);
 
     useEffect(() => {
-        getAdvice()
-    }, [])
-
-    function getAdvice(){
         fetch(`${process.env.REACT_APP_API}`)
         .then(response => response.json())
         .then(response => setSlip({
             "id": response.slip.id,
             "advice": response.slip.advice
         }))
+        console.log(slip)
+    }, [])
+
+    function getAdvice(){
+        setLoadingAdvice(true)
+        setTimeout(() => {
+        fetch(`${process.env.REACT_APP_API}`)
+        .then(response => response.json())
+        .then(response => setSlip({
+            "id": response.slip.id,
+            "advice": response.slip.advice
+        }))
+        setLoadingAdvice(false)
+        }, 2000)
+        
     }
 
   return (
@@ -49,7 +61,7 @@ const AdviceContainer = (props) => {
                 margin='auto'
             >{slip.advice}</Text>
         </VStack>
-        <IconButton zIndex={0} isRound position='relative' top='-5' colorScheme='teal' onClick={() => {getAdvice()}} icon={<AiOutlineReload />}/>
+        <IconButton zIndex={0} isRound isLoading={loadingAdvice} position='relative' top='-5' colorScheme='teal' onClick={() => {getAdvice()}} icon={<AiOutlineReload />}/>
     </Box>
   )
 }
