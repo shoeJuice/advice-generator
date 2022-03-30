@@ -9,6 +9,7 @@ import {
   Grid,
   Flex,
   GridItem,
+  useMediaQuery,
   theme,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
@@ -17,6 +18,9 @@ import { Logo } from './Logo';
 import AdviceContainer from './components/AdviceContainer';
 
 function App() {
+
+  const mobileWidth = useMediaQuery('max-width: 600px;')
+
   return (
     <ChakraProvider theme={theme} >
       <Box textAlign="center" fontSize="xl" overflow='hidden'>
@@ -28,8 +32,8 @@ function App() {
           </GridItem>
           <GridItem
             rowStart={3}
-            colStart={5}
-            colEnd={9}
+            colStart={3}
+            colSpan={8}
           >
             <AdviceContainer />
           </GridItem>
