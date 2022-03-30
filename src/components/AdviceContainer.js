@@ -23,8 +23,7 @@ const AdviceContainer = (props) => {
     }, [])
 
     function getAdvice(){
-
-        fetch("https://api.adviceslip.com/advice")
+        fetch(`${process.env.REACT_APP_API}`)
         .then(response => response.json())
         .then(response => setSlip({
             "id": response.slip.id,
