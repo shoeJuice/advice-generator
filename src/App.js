@@ -26,14 +26,14 @@ function App() {
       <Box textAlign="center" fontSize="xl" overflow='hidden'>
         <Grid templateRows='repeat(6, 1fr)' templateColumns='repeat(12, 1fr)' height="100vh" width='100vw' p={3} >
           <GridItem
-            colStart={12}
+            colStart={13}
           >
             <ColorModeSwitcher />
           </GridItem>
           <GridItem
             rowStart={3}
-            colStart={3}
-            colSpan={8}
+            colStart={4}
+            colSpan={7}
           >
             <AdviceContainer />
           </GridItem>
